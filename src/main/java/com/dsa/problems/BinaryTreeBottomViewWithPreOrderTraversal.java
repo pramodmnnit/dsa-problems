@@ -6,7 +6,7 @@ import java.util.TreeMap;
 
 public class BinaryTreeBottomViewWithPreOrderTraversal {
 
-  public static void main(String [] args){
+  public static void main(String[] args) {
     TreeNode root = buildTree();
     printTreeBottomView(root);
   }
@@ -25,12 +25,12 @@ public class BinaryTreeBottomViewWithPreOrderTraversal {
   }
 
   private static void printTreeBottomView(TreeNode root) {
-    if(Objects.isNull(root)){
+    if (Objects.isNull(root)) {
       return;
     }
     Map<Integer, Pair<Integer, Integer>> distanceToNodePairMap = new TreeMap<>();
     printTreeBottomViewUtil(root, 0, 0, distanceToNodePairMap);
-    for(Map.Entry<Integer, Pair<Integer, Integer>> each : distanceToNodePairMap.entrySet()){
+    for (Map.Entry<Integer, Pair<Integer, Integer>> each : distanceToNodePairMap.entrySet()) {
       System.out.print(each.getValue().first + " ");
     }
     System.out.println();
@@ -38,20 +38,20 @@ public class BinaryTreeBottomViewWithPreOrderTraversal {
 
   private static void printTreeBottomViewUtil(TreeNode root, int distance, int height,
       Map<Integer, Pair<Integer, Integer>> distanceToNodePairMap) {
-    if(Objects.isNull(root)){
+    if (Objects.isNull(root)) {
       return;
     }
-    if(!distanceToNodePairMap.containsKey(distance)){
+    if (!distanceToNodePairMap.containsKey(distance)) {
       distanceToNodePairMap.put(distance, new Pair<>(root.data, height));
     } else {
       Pair<Integer, Integer> pair = distanceToNodePairMap.get(distance);
-      if(pair.second <= height){
+      if (pair.second <= height) {
         pair.second = height;
         pair.first = root.data;
         distanceToNodePairMap.put(distance, pair);
       }
     }
-    printTreeBottomViewUtil(root.left, distance -1 , height +1, distanceToNodePairMap);
-    printTreeBottomViewUtil(root.right, distance +1 , height +1, distanceToNodePairMap);
+    printTreeBottomViewUtil(root.left, distance - 1, height + 1, distanceToNodePairMap);
+    printTreeBottomViewUtil(root.right, distance + 1, height + 1, distanceToNodePairMap);
   }
 }

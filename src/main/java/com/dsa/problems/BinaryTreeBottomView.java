@@ -7,6 +7,7 @@ import java.util.Queue;
 import java.util.TreeMap;
 
 class TreeNodeWithDistance {
+
   int data;
   int distance;
   TreeNodeWithDistance left;
@@ -35,27 +36,27 @@ public class BinaryTreeBottomView {
   }
 
   private static void printBottomView(TreeNodeWithDistance root) {
-    if(Objects.isNull(root)){
+    if (Objects.isNull(root)) {
       return;
     }
     Map<Integer, Integer> distanceToDataMap = new TreeMap<>();
     Queue<TreeNodeWithDistance> queue = new LinkedList<>();
     root.distance = 0;
     queue.add(root);
-    while (!queue.isEmpty()){
+    while (!queue.isEmpty()) {
       TreeNodeWithDistance node = queue.remove();
       distanceToDataMap.put(node.distance, node.data);
-      if(Objects.nonNull(node.left)){
-        node.left.distance = node.distance -1;
+      if (Objects.nonNull(node.left)) {
+        node.left.distance = node.distance - 1;
         queue.add(node.left);
       }
-      if(Objects.nonNull(node.right)){
+      if (Objects.nonNull(node.right)) {
         node.right.distance = node.distance + 1;
         queue.add(node.right);
       }
     }
     System.out.println("Bottom view of the tree");
-    for( Map.Entry<Integer, Integer> each : distanceToDataMap.entrySet()){
+    for (Map.Entry<Integer, Integer> each : distanceToDataMap.entrySet()) {
       System.out.print(each.getValue() + " ");
     }
     System.out.println();

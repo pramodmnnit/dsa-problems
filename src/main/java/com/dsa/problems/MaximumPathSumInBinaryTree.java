@@ -12,7 +12,7 @@ public class MaximumPathSumInBinaryTree {
   }
 
   public static int maxPathSumUtil(TreeNode root) {
-    if(Objects.isNull(root)){
+    if (Objects.isNull(root)) {
       return 0;
     }
     int leftSum = maxPathSumUtil(root.left);
@@ -22,7 +22,8 @@ public class MaximumPathSumInBinaryTree {
     maxSum = Math.max(maxSum, maxSumSoFar);
     return maxSumAtMostOneChild;
   }
-  public static void main(String[] args){
+
+  public static void main(String[] args) {
     TreeNode root = new TreeNode(10);
     root.left = new TreeNode(2);
     root.right = new TreeNode(10);
